@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int           @id @default(autoincrement())
+  email        String        @unique
+  name         String
+  password     String
+  createdAt    DateTime      @default(now())
+  posts        Post[]
+  comments     Comment[]
+  picture      String?
+  userHasRoles UserHasRole[]
+}
+
+model Post {
+  id          Int       @id @default(autoincrement())
+  title       String
+  content     String
+  description String
+  createdAt   DateTime  @default(now())
+  categoryId  Int
+  category    Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  genreId     Int
+  genre       Genre     @relation(fields: [genreId], references: [id], onDelete: Cascade)
+  createdBy   Int
+  user        User      @relation(fields: [createdBy], references: [id], onDelete: Cascade)
+  image       String?
+  comments    Comment[]
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  posts Post[]
+}
+
+model Genre {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  posts Post[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  text      String
+  author    Int
+  user      User     @relation(fields: [author], references: [id], onDelete: Cascade)
+  postId    Int
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model Role {
+  id           Int           @id @default(autoincrement())
+  name         String
+  userHasRoles UserHasRole[]
+}
+
+model UserHasRole {
+  id     Int  @id @default(autoincrement())
+  userId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  roleId Int
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+}

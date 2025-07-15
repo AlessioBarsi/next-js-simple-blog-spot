@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Simple Blog Spot
+
+**Next.js Simple Blog Spot** is a full-stack blog application built with Next.js and Prisma
+It allows users to create and manage blog posts, comment on them, and interact with categorized and genre-based content. The app supports user authentication and role-based access control for advanced permissions and content moderation.
+
+## Features
+
+- User authentication using **NexthAuth.js**
+- Role-based permissions:
+  - **Admin**, **Editor**, **Author**, and **Unprivileged** users
+- Create, update, and delete blog posts
+- Commenting system on posts
+- Display post images by URL
+- Categorize and tag posts with genres
+- Sort posts by:
+  - Category
+  - Genre
+  - Author
+- Editor tools for managing categories and genres
+
+## Tech Stack
+
+- **Next.js** - App Router, Server Components, SSR
+- **Prisma** - ORM for PostgreSQL
+- **PostgreSQL** - Relational database
+- **shadcn/ui** - Component styling with Tailwind CSS
+- **NextAuth.js** - Authentication and session management
+- **bcrypt** - Password Hashing
+- **Sonner** - Toast notification system
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 18+
+- PostgreSQL instance
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   git clone https://github.com/alessiobarsi/nextjs-simple-blog-spot.git
+    ```
 
-## Learn More
+2. Install dependencies
+    ```bash
+    npm install
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+3. Configure the databse URL your .env file:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    DATABASE_URL=postgresql://your-db-url
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Generate the Prisma client and apply migrations:
 
-## Deploy on Vercel
+    ```bash
+    npx prisma generate
+    npx prisma migrate dev --name init
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. Seed the database:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    ```bash
+    npx tsx prisma/seed.ts
+    ```
+    You will be prompted to enter an email and password for the superadmin user. This user can't be deleted or lose admin access.
+
+6. Run the development server:
+
+    ```bash
+    npm run dev
+    ```
+    You may change your user details
+
+### License
+
+This project is open source and available under the MIT License.
+
+### Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
