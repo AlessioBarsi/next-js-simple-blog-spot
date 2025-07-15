@@ -40,7 +40,7 @@ It allows users to create and manage blog posts, comment on them, and interact w
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/alessiobarsi/nextjs-simple-blog-spot.git
+   git clone https://github.com/alessiobarsi/next-js-simple-blog-spot.git
     ```
 
 2. Install dependencies
