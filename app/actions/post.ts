@@ -18,6 +18,7 @@ export async function fetchPosts() {
       user: {
         select: {
           name: true,
+          picture: true,
         },
       },
       category: {
@@ -53,6 +54,7 @@ export async function fetchPostsByCategory(categoryName: string) {
       user: {
         select: {
           name: true,
+          picture: true,
         },
       },
       category: {
@@ -89,6 +91,7 @@ export async function fetchPostsByGenre(genreName: string) {
       user: {
         select: {
           name: true,
+          picture: true,
         },
       },
       category: {
@@ -124,6 +127,7 @@ export async function fetchPostsByAuthor(author: number) {
       user: {
         select: {
           name: true,
+          picture: true,
         },
       },
       category: {
@@ -151,6 +155,7 @@ export async function fetchPost(postId: number) {
       user: {
         select: {
           name: true,
+          picture: true,
         },
       },
       category: {

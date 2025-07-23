@@ -18,6 +18,8 @@ import { Alert, AlertTitle, AlertDescription } from "../ui/alert";
 import { badgeVariants } from "../ui/badge";
 import Link from "next/link";
 import CommentsList from "./CommentsList";
+import { Avatar } from "../ui/avatar";
+import { AvatarImage } from "@radix-ui/react-avatar";
 
 type Props = {
     categoryName?: string,
@@ -92,7 +94,14 @@ export default async function PostsList({ categoryName, genreName, authorId, sta
                             </div>
                             : <></>
                         }
-                        <pre>Posted by User<a className="text-blue-500" href={`/posts/author/${post.createdBy}`}> {post.user.name}</a> at {format(post.createdAt, 'Pp')}</pre>
+                        <div className="flex space-x-2 my-2">
+                            <a className="text-blue-500" href={`/posts/author/${post.createdBy}`}> {post.user.name}</a>
+                            <Avatar >
+                                <AvatarImage src={post.user.picture ?? "/placeholder-profile.jpg"}></AvatarImage>
+                            </Avatar>
+                        </div>
+
+                        <pre>{format(post.createdAt, 'Pp')}</pre>
 
                         <CommentsList postId={post.id} />
 

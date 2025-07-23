@@ -2,10 +2,11 @@
 
 import { useSession } from "next-auth/react";
 import { Skeleton } from "../ui/skeleton";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "../ui/card";
-import { format } from 'date-fns'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../ui/card";
+import { format } from 'date-fns';
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { Badge } from "../ui/badge";
+import Image from "next/image";
 
 export default function ProfileInfo() {
     const { data: session, status } = useSession();
@@ -15,7 +16,6 @@ export default function ProfileInfo() {
 
     if (session?.user) {
         const userData = session.user;
-
         return (
             <div>
                 <Card>
@@ -28,8 +28,8 @@ export default function ProfileInfo() {
                     </CardHeader>
                     <CardContent>
                         <Avatar>
-                            <AvatarImage src={userData.picture ?? ''} />
-                            <AvatarFallback>No avatar</AvatarFallback>
+                            <AvatarImage width={64} height={64} src={userData.picture ?? ''} />
+                            <AvatarFallback><Image src="/placeholder-profile.jpg" width={64} height={64} alt="Error"></Image></AvatarFallback>
                         </Avatar>
                         <pre>Email: <b>{userData.email}</b></pre>
 
