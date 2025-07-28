@@ -7,6 +7,8 @@ import {
 } from "@/components/ui/accordion"
 import { MessageSquareText } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import { CommentProvider } from "../context/CommentContext";
+import CommentButtons from "./CommentButtons";
 
 type Props = {
     postId: number,
@@ -22,24 +24,37 @@ export default async function CommentsList({ postId }: Props) {
                         <Accordion type="single" collapsible>
 
                             <AccordionItem value="comments-list">
-                            <AccordionTrigger><MessageSquareText />View {comments.length} Comments</AccordionTrigger>
+                                <AccordionTrigger><MessageSquareText />View {comments.length} Comments</AccordionTrigger>
 
                                 <AccordionContent>
                                     {comments.map(comment => (
 
-                                        <div className="my-2" key={comment.id}>
+                                        <div className="flex space-x-2 my-2" key={comment.id}>
                                             <Alert>
                                                 <AlertTitle>{comment.user.name}</AlertTitle>
                                                 <AlertDescription>
                                                     {comment.text}
                                                 </AlertDescription>
                                             </Alert>
+
+                                            <div>
+                                                <CommentProvider
+                                                    commentId={comment.id}
+                                                    postId={comment.postId}
+                                                    text={comment.text}
+                                                    author={comment.author}
+                                                >
+
+                                                    <CommentButtons />
+                                                </CommentProvider>
+                                            </div>
                                         </div>
 
 
                                     ))}
                                 </AccordionContent>
                             </AccordionItem>
+
                         </Accordion>
 
                     </div>

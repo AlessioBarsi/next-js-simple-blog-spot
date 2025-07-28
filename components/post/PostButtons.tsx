@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import PostForm from "./PostForm";
 import { useSession } from "next-auth/react";
 import { CommentForm } from "./CommentForm";
+import { CommentProvider } from "../context/CommentContext";
 
 export default function PostButtons() {
     const { data: session, status } = useSession();
@@ -83,7 +84,10 @@ export default function PostButtons() {
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>Add a comment</DialogTitle>
-                        <CommentForm postId={postId ?? undefined} userId={session?.user.id} setIsOpen={setIsOpenComment} />
+                        <CommentProvider
+                        author={session?.user.id}>
+                            <CommentForm update={false} postId={postId ?? 0} setIsOpen={setIsOpenComment} />
+                        </CommentProvider>
                     </DialogHeader>
                 </DialogContent>
             </Dialog>
