@@ -73,6 +73,21 @@ It allows users to create and manage blog posts, comment on them, and interact w
     ```
     You may change your user details
 
+### Screenshots
+<details>
+
+![](/public/docs/next-js-blogspot-3.png)
+
+![](/public/docs/next-js-blogspot-5.png)
+
+![](/public/docs/next-js-blogspot-1.png)
+
+![](/public/docs/next-js-blogspot-4.png)
+
+
+![](/public/docs/next-js-blogspot-6.png)
+</details>
+
 ### License
 
 This project is open source and available under the MIT License.
