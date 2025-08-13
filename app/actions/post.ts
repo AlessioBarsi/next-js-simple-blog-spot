@@ -146,6 +146,69 @@ export async function fetchPostsByAuthor(author: number) {
   return posts;
 }
 
+export async function fetchPostsBySearch(term: string) {
+  const posts = await prisma.post.findMany({
+    where: {
+      OR: [
+        { title: { contains: term, mode: 'insensitive' } },
+        { content: { contains: term, mode: 'insensitive' } },
+        { description: { contains: term, mode: 'insensitive' } },
+      ],
+    },
+    include: {
+      user: {
+        select: {
+          name: true,
+          picture: true,
+        },
+      },
+      category: {
+        select: {
+          name: true,
+        }
+      },
+      genre: {
+        select: {
+          name: true,
+        }
+      },
+    },
+  });
+
+  if (posts.length == 0) return false;
+  return posts;
+}
+
+export async function fetchPostsByDate(startDate: Date) {
+  const posts = await prisma.post.findMany({
+    where: {
+      createdAt: {
+        gte: startDate,
+      },
+    },
+    include: {
+      user: {
+        select: {
+          name: true,
+          picture: true,
+        },
+      },
+      category: {
+        select: {
+          name: true,
+        },
+      },
+      genre: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+
+  return posts;
+}
+
 export async function fetchPost(postId: number) {
   const post = await prisma.post.findUnique({
     where: {

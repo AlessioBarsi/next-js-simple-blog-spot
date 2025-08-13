@@ -1,4 +1,4 @@
-import { fetchPosts, fetchPostsByAuthor, fetchPostsByCategory, fetchPostsByGenre } from "@/app/actions/post";
+import { fetchPosts, fetchPostsByAuthor, fetchPostsByCategory, fetchPostsByDate, fetchPostsByGenre, fetchPostsBySearch } from "@/app/actions/post";
 import { fetchCategories } from "@/app/actions/category";
 import { fetchGenres } from "@/app/actions/genre";
 import PostButtons from "@/components/post/PostButtons";
@@ -20,17 +20,21 @@ import Link from "next/link";
 import CommentsList from "./CommentsList";
 import { Avatar } from "../ui/avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
+import { fetchUsersWithRoles } from "@/app/actions/user";
+import SearchButtons from "./SearchButtons";
 
 type Props = {
     categoryName?: string,
     genreName?: string,
     authorId?: number,
     startDate?: string,
+    searchTerm?: string,
 }
-export default async function PostsList({ categoryName, genreName, authorId, startDate }: Props) {
+export default async function PostsList({ categoryName, genreName, authorId, startDate, searchTerm }: Props) {
     let posts = await fetchPosts();
     const categories = await fetchCategories();
     const genres = await fetchGenres();
+    const authors = await fetchUsersWithRoles();
 
     let notFoundMessage = '';
     let result = undefined;
@@ -48,8 +52,14 @@ export default async function PostsList({ categoryName, genreName, authorId, sta
             if (!result) notFoundMessage = 'This user has not published any posts';
             break;
         case (startDate !== undefined):
-            result = false;
-            if (!result) notFoundMessage = 'There are no posts in this date';
+            console.log('Fetching posts from date:', startDate);
+            result = await fetchPostsByDate(new Date(startDate));
+            //result = false; // Placeholder for future implementation
+            if (!result) notFoundMessage = 'There are no posts from this date';
+            break;
+        case (searchTerm !== undefined):
+            result = await fetchPostsBySearch(searchTerm);
+            if (!result) notFoundMessage = 'There are no posts containing this term';
             break;
     }
     //@ts-ignore
@@ -57,7 +67,7 @@ export default async function PostsList({ categoryName, genreName, authorId, sta
 
     if (notFoundMessage != '') {
         return (
-            <Alert className="w-[30%]">
+            <Alert className="w-[30%] mt-2">
                 <CircleX className="h-4 w-4" />
                 <AlertTitle>Posts have not been found</AlertTitle>
                 <AlertDescription>
@@ -68,6 +78,12 @@ export default async function PostsList({ categoryName, genreName, authorId, sta
     }
     return (
         <div>
+            { (authors && genres && categories) ?
+                <SearchButtons authors={authors} genres={genres} categories={categories} />
+                :
+                <Skeleton className="w-[70%]"/>
+            }
+
             {(posts && categories && genres) ? posts.map(post => (
                 <Card key={post.id} className="my-3">
                     <CardHeader>

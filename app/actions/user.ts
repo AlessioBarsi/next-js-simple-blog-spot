@@ -25,6 +25,24 @@ export async function fetchUsers() {
     return users;
 }
 
+export async function fetchUsersWithRoles() {
+    const users = await prisma.user.findMany({
+        where: {
+            userHasRoles: {
+                some: {}, // Only users with at least one role
+            },
+        },
+        include: {
+            userHasRoles: {
+                include: {
+                    role: true,
+                },
+            },
+        },
+    });
+    return users;
+}
+
 export async function fetchUser(id: number) {
     const user = await prisma.user.findUnique({
         where: {
