@@ -14,6 +14,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import LinkButton from "@/components/LinkButton";
 import { format } from "date-fns";
+import { Separator } from "@/components/ui/separator";
 
 
 export default async function Home() {
@@ -42,7 +43,7 @@ export default async function Home() {
           <CardFooter className="flex-col gap-2">
             <div>
               {session && session.user ?
-                <div className="flex items-center h-5 space-x-2 my-2">
+                <div className="flex items-start h-5 space-x-2 my-2">
                   {(session && session.user.userHasRoles && session.user.userHasRoles.length > 0) ?
                     <PostProvider
                       categories={categories}
@@ -58,14 +59,14 @@ export default async function Home() {
                   <LogoutButton />
                 </div>
                 :
-                <div className="flex items-center h-5 space-x-2 my-2"><LoginButton /> <RegisterButton /></div>
+                <div className="flex items-start h-5 space-x-2 my-2"><LoginButton /> <RegisterButton /></div>
               }
             </div>
           </CardFooter>
         </Card>
       </span>
       <p className="text-3xl my-2 font-bold">Latest Posts</p>
-      <div className="flex items-center space-x-2 my-2">
+      <div className="flex items-start space-x-2 my-2">
 
         {latestPosts.slice(0, 3).map(post => (
           <Card key={post.id} className="w-[30%]">
@@ -84,7 +85,8 @@ export default async function Home() {
                 </div>
                 : <></>
               }
-              <pre>Posted by User <a className="text-blue-500" href={`/posts/author/${post.createdBy}`}>{post.user.name}</a></pre>
+              <Separator className="my-3" />
+              <pre>Posted by <a className="text-blue-500" href={`/posts/author/${post.createdBy}`}>{post.user.name}</a></pre>
 
             </CardContent>
           </Card>

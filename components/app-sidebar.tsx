@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sidebar"
 import { Book, Home, Info, ScrollText, ShieldUser, StickyNote, Users } from "lucide-react"
 import { HeaderButtons } from "./auth/AuthButtons"
+import { ModeToggle } from "./ModeToggle"
 
 const items = [
     {
@@ -53,6 +54,7 @@ export function AppSidebar() {
             <SidebarHeader>
 
                 <HeaderButtons />
+                <ModeToggle />
 
             </SidebarHeader>
 

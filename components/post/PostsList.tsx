@@ -19,9 +19,10 @@ import { badgeVariants } from "../ui/badge";
 import Link from "next/link";
 import CommentsList from "./CommentsList";
 import { Avatar } from "../ui/avatar";
-import { AvatarImage } from "@radix-ui/react-avatar";
+import { AvatarImage } from "../ui/avatar";
 import { fetchUsersWithRoles } from "@/app/actions/user";
 import SearchButtons from "./SearchButtons";
+import { Separator } from "../ui/separator";
 
 type Props = {
     categoryName?: string,
@@ -52,9 +53,7 @@ export default async function PostsList({ categoryName, genreName, authorId, sta
             if (!result) notFoundMessage = 'This user has not published any posts';
             break;
         case (startDate !== undefined):
-            console.log('Fetching posts from date:', startDate);
             result = await fetchPostsByDate(new Date(startDate));
-            //result = false; // Placeholder for future implementation
             if (!result) notFoundMessage = 'There are no posts from this date';
             break;
         case (searchTerm !== undefined):
@@ -78,10 +77,10 @@ export default async function PostsList({ categoryName, genreName, authorId, sta
     }
     return (
         <div>
-            { (authors && genres && categories) ?
+            {(authors && genres && categories) ?
                 <SearchButtons authors={authors} genres={genres} categories={categories} />
                 :
-                <Skeleton className="w-[70%]"/>
+                <Skeleton className="w-[70%]" />
             }
 
             {(posts && categories && genres) ? posts.map(post => (
@@ -110,11 +109,12 @@ export default async function PostsList({ categoryName, genreName, authorId, sta
                             </div>
                             : <></>
                         }
-                        <div className="flex space-x-2 my-2">
-                            <a className="text-blue-500" href={`/posts/author/${post.createdBy}`}> {post.user.name}</a>
+                        <Separator className="mt-3"/>
+                        <div className="flex items-center space-x-2 my-2">
                             <Avatar >
                                 <AvatarImage src={post.user.picture ?? "/placeholder-profile.jpg"}></AvatarImage>
                             </Avatar>
+                            <a className="text-blue-500" href={`/posts/author/${post.createdBy}`}> {post.user.name}</a>
                         </div>
 
                         <pre>{format(post.createdAt, 'Pp')}</pre>
