@@ -78,15 +78,15 @@ It allows users to create and manage blog posts, comment on them, and interact w
 
 ![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/NextjsBlog1.png)
 
-![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/NextjsBlog2.png)
+![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/Nextjsblog2.png)
 
-![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/NextjsBlog3.png)
+![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/Nextjsblog3.png)
+1
+![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/Nextjsblog4.png)
 
-![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/NextjsBlog4.png)
+![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/Nextjsblog5.png)
 
-![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/NextjsBlog5.png)
-
-![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/NextjsBlog6.png)
+![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/Nextjsblog6.png)
 
 </details>
 
