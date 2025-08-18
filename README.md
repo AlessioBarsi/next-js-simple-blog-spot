@@ -71,7 +71,7 @@ It allows users to create and manage blog posts, comment on them, and interact w
     ```bash
     npm run dev
     ```
-    You may change your user details
+    You may change your user details at /profile
 
 ### Screenshots
 <details>
