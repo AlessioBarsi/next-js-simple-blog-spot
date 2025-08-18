@@ -76,16 +76,18 @@ It allows users to create and manage blog posts, comment on them, and interact w
 ### Screenshots
 <details>
 
-![](/public/docs/next-js-blogspot-3.png)
+![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/NextjsBlog1.png)
 
-![](/public/docs/next-js-blogspot-5.png)
+![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/NextjsBlog2.png)
 
-![](/public/docs/next-js-blogspot-1.png)
+![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/NextjsBlog3.png)
 
-![](/public/docs/next-js-blogspot-4.png)
+![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/NextjsBlog4.png)
 
+![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/NextjsBlog5.png)
 
-![](/public/docs/next-js-blogspot-6.png)
+![](https://github.com/AlessioBarsi/alessio-barsi-portfolio/blob/main/public/projects/next-js-simple-blog-spot/NextjsBlog6.png)
+
 </details>
 
 ### License
