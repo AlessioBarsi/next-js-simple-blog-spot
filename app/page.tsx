@@ -27,8 +27,8 @@ export default async function Home() {
 
   return (
     <div>
-      <span>
-        <Card className="w-[70%]">
+      <div>
+        <Card className="w-full md:w-[70%]">
           <CardHeader>
             <CardTitle className="text-4xl">Next.js Simple Blog Spot!</CardTitle>
             <CardDescription>
@@ -43,20 +43,24 @@ export default async function Home() {
           <CardFooter className="flex-col gap-2">
             <div>
               {session && session.user ?
-                <div className="flex items-start h-5 space-x-2 my-2">
-                  {(session && session.user.userHasRoles && session.user.userHasRoles.length > 0) ?
-                    <PostProvider
-                      categories={categories}
-                      genres={genres}>
-                      <NewPostDialog />
-                    </PostProvider>
-                    :
-                    <></>
-                  }
-                  <LinkButton text='My Posts' page={`posts/author/${session?.user.id}`} />
-                  <ProfileButton />
-                  <LinkButton text='My Comments' page={`comments/${session?.user.id}`} />
-                  <LogoutButton />
+                <div >
+                  <div className="flex items-start space-x-2 my-2">
+                    {(session && session.user.userHasRoles && session.user.userHasRoles.length > 0) ?
+                      <PostProvider
+                        categories={categories}
+                        genres={genres}>
+                        <NewPostDialog />
+                      </PostProvider>
+                      :
+                      <></>
+                    }
+                    <LinkButton text='Posts' page={`posts/author/${session?.user.id}`} />
+                    <LinkButton text='Comments' page={`comments/${session?.user.id}`} />
+                  </div>
+                  <div className="flex items-center justify-center space-x-2 my-2">
+                    <ProfileButton />
+                    <LogoutButton />
+                  </div>
                 </div>
                 :
                 <div className="flex items-start h-5 space-x-2 my-2"><LoginButton /> <RegisterButton /></div>
@@ -64,12 +68,13 @@ export default async function Home() {
             </div>
           </CardFooter>
         </Card>
-      </span>
+      </div>
+
       <p className="text-3xl my-2 font-bold">Latest Posts</p>
-      <div className="flex items-start space-x-2 my-2">
+      <div className="flex flex-col space-y-2 md:flex-row md:items-start space-x-2 my-2">
 
         {latestPosts.slice(0, 3).map(post => (
-          <Card key={post.id} className="w-[30%]">
+          <Card key={post.id} className="w-full md:w-[30%]">
             <CardHeader>
               <CardTitle>{post.title}</CardTitle>
               <CardDescription>

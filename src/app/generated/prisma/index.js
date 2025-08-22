@@ -179,7 +179,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/media/ale12/Windows8_OS/Github/my-archive/src/app/generated/prisma",
+      "value": "/media/ale12/Windows8_OS/Github/next-js-simple-blog-spot/src/app/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -193,7 +193,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/media/ale12/Windows8_OS/Github/my-archive/prisma/schema.prisma",
+    "sourceFilePath": "/media/ale12/Windows8_OS/Github/next-js-simple-blog-spot/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

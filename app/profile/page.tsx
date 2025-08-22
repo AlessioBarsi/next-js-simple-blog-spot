@@ -7,7 +7,7 @@ export default function Profile() {
 
   return (
     <div>
-      <div className="g-5 mx-auto w-1/2">
+      <div className="g-5 mx-auto w-full md:w-1/2">
         <Tabs defaultValue="account">
           <TabsList className="w-full">
             <TabsTrigger className="flex-1" value="account">Account</TabsTrigger>

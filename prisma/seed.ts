@@ -11,21 +11,20 @@ async function prompt(question: string): Promise<string> {
 
     return new Promise((resolve) => {
         rl.question(question, (answer) => {
-            rl.close();
             resolve(answer);
+            rl.close();
         });
     });
 }
 
 async function main() {
-    //Todo: fetch email and password by input from command line
     const email = await prompt("Enter admin email: ");
     const password = await prompt("Enter admin password: ");
     const hashedPassword = await bcrypt.hash(password, 10);
     await prisma.user.createMany({
         data: [
             {
-                email: 'email@admin.com',
+                email: email,
                 name: 'admin',
                 password: hashedPassword,
             },

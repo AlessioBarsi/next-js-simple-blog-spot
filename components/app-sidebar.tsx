@@ -1,3 +1,4 @@
+'use client';
 import {
     Sidebar,
     SidebarContent,
@@ -13,6 +14,7 @@ import {
 import { Book, Home, Info, ScrollText, ShieldUser, StickyNote, Users } from "lucide-react"
 import { HeaderButtons } from "./auth/AuthButtons"
 import { ModeToggle } from "./ModeToggle"
+import { useSession } from "next-auth/react"
 
 const items = [
     {
@@ -48,7 +50,9 @@ const items = [
 ]
 
 export function AppSidebar() {
-
+    const { data: session } = useSession();
+    const hasRoles = session?.user?.userHasRoles && session.user.userHasRoles.length > 0;
+    console.log(hasRoles)
     return (
         <Sidebar>
             <SidebarHeader>
@@ -60,19 +64,21 @@ export function AppSidebar() {
 
             <SidebarContent>
                 <SidebarGroup />
-                <SidebarGroupLabel>Application</SidebarGroupLabel>
+                <SidebarGroupLabel>Blogspot</SidebarGroupLabel>
                 <SidebarGroupContent>
                     <SidebarMenu>
-                        {items.map((item) => (
-                            <SidebarMenuItem key={item.title}>
-                                <SidebarMenuButton asChild>
-                                    <a href={item.url}>
-                                        <item.icon />
-                                        <span>{item.title}</span>
-                                    </a>
-                                </SidebarMenuButton>
-                            </SidebarMenuItem>
-                        ))}
+                        {items.map((item) =>
+                            (hasRoles || (item.title === "Home" || item.title === "Posts")) ? (
+                                <SidebarMenuItem key={item.title}>
+                                    <SidebarMenuButton asChild>
+                                        <a href={item.url}>
+                                            <item.icon />
+                                            <span>{item.title}</span>
+                                        </a>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            ) : null
+                        )}
                     </SidebarMenu>
                 </SidebarGroupContent>
                 <SidebarGroup />

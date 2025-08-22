@@ -17,7 +17,7 @@ export default async function CommentsList({ postId }: Props) {
     const comments = await fetchCommentsByPost(postId);
 
     return (
-        <div className="w-[50%]">
+        <div className="w-full md:w-[50%]">
             {
                 comments ?
                     <div>
